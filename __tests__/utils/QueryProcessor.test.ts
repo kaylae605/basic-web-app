@@ -8,6 +8,14 @@ describe("QueryProcessor", () => {
         expect(typeof response).toBe("string");
     });
 
+    test('should say kaylae', () => {
+        const query = "what is your andrew id?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "kaylae"
+          ));
+    });
+
     test('should return shakespeare description', () => {
         const query = "shakespeare";
         const response: string = QueryProcessor(query);
@@ -17,6 +25,7 @@ describe("QueryProcessor", () => {
             "writer in the English language and the world's pre-eminent dramatist."
           ));
     });
+
 
     test('should return name', () => {
         const query = "What is your name?";
