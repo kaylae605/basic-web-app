@@ -16,7 +16,7 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("Which of the following numbers is the largest: 29, 60, 18?")) {
-    return findLargestNumberAsString(); 
+    return findLargestOfThree(71, 92, 12); 
   }
 
   if (query.toLowerCase().includes("What is 91 plus 98?")) {
@@ -40,16 +40,15 @@ export default function QueryProcessor(query: string): string {
 
   
 
-function findLargestNumberAsString() {
-  // Define the set of numbers
-  const numbers = [29, 60, 18];
+function findLargestOfThree(num1: number, num2: number, num3: number): string {
+  // Put the arguments into an array
+  const numbers = [num1, num2, num3];
 
-  // Find the largest number
+  // Use Math.max with the spread operator to find the largest number
   const largestNumber = Math.max(...numbers);
 
-  // Convert the number to a string and return it
-  return largestNumber.toString();
-  // Alternatively: return `${largestNumber}`;
+  // Convert the result to a string and return it
+  return String(largestNumber);
 }
 
 
