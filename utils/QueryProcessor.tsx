@@ -15,7 +15,7 @@ export default function QueryProcessor(query: string): string {
     return "kaylae";
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest: 71, 92, 12?")) {
+  if (query.toLowerCase().includes("which of the following numbers is the largest: 71, 92, 12?")) {
     return findLargestOfThree(71, 92, 12); 
   }
 
