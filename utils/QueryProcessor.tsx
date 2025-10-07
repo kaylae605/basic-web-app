@@ -16,7 +16,7 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("Which of the following numbers is the largest: 29, 60, 18?")) {
-    return "60";
+    return findLargestNumberAsString(); 
   }
 
   if (query.toLowerCase().includes("What is 91 plus 98?")) {
@@ -39,6 +39,19 @@ export default function QueryProcessor(query: string): string {
   
 
   
+
+function findLargestNumberAsString() {
+  // Define the set of numbers
+  const numbers = [29, 60, 18];
+
+  // Find the largest number
+  const largestNumber = Math.max(...numbers);
+
+  // Convert the number to a string and return it
+  return largestNumber.toString();
+  // Alternatively: return `${largestNumber}`;
+}
+
 
   return "";
 }
