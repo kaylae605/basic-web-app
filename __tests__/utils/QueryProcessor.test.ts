@@ -9,7 +9,7 @@ describe("QueryProcessor", () => {
     });
 
     test('should say kaylae', () => {
-        const query = "what is your name?";
+        const query = "what is your andrew id?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
             "kaylae"
