@@ -1,5 +1,5 @@
 export default function QueryProcessor(query: string): string {
-
+  const normalizedQuery = query.toLowerCase();
   if (query.toLowerCase().includes("what is your andrew id?")) {
     return "kaylae";
   }
@@ -15,41 +15,42 @@ export default function QueryProcessor(query: string): string {
     return "kaylae";
   }
 
-  if (query.toLowerCase().includes("which of the following numbers is the largest: 71, 92, 12?")) {
-    return findLargestOfThree(71, 92, 12); 
+  if (normalizedQuery.includes(" plus ")) {
+    // Regex to find two numbers around "plus"
+    const match = query.match(/What is (\d+) plus (\d+)\?/i);
+    if (match && match.length === 3) {
+      const num1 = parseInt(match[1], 10);
+      const num2 = parseInt(match[2], 10);
+      return (num1 + num2).toString();
+    }
   }
 
-  if (query.toLowerCase().includes("What is 91 plus 98?")) {
-    return "189";
+  // -----------------------------------------------------
+  // 3. Comparison (Largest Number) Logic
+  // Matches "Which of the following numbers is the largest: [A], [B], [C]?"
+  // -----------------------------------------------------
+
+  if (normalizedQuery.includes("which of the following numbers is the largest:")) {
+    // Regex to find all number sequences separated by commas or spaces
+    const numbersMatch = query.match(/(\d+)/g);
+
+    if (numbersMatch && numbersMatch.length >= 2) {
+      // Convert all captured strings to numbers
+      const numbers = numbersMatch.map(n => parseInt(n, 10));
+
+      // Find the maximum number
+      const largest = Math.max(...numbers);
+
+      // Return the result as a string
+      return largest.toString();
+    }
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest: 55, 97, 95?")) {
-    return "97";
-  }
-  if (query.toLowerCase().includes("Which of the following numbers is the largest: 82, 58, 46?")) {
-    return "82";
-  }
+  // -----------------------------------------------------
+  // 4. Default Fallback
+  // -----------------------------------------------------
 
-
-
-  if (query.toLowerCase().includes("What is 24 plus 41?")) {
-    return "65";
-  }
-
-  
-
-  
-
-function findLargestOfThree(num1: number, num2: number, num3: number): string {
-  // Put the arguments into an array
-  const numbers = [num1, num2, num3];
-
-  // Use Math.max with the spread operator to find the largest number
-  const largestNumber = Math.max(...numbers);
-
-  // Convert the result to a string and return it
-  return String(largestNumber);
-}
+  // If no other condition is met, return an empty string or a default response.
 
 
   return "";
